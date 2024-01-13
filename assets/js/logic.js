@@ -44,19 +44,31 @@ startQuestions();
 
 }
 
+//Function to display questions with options
 function startQuestions(){
     var currentQuestion= displayQuestions[currentQuestionIndex];
     displayEl.textContent=currentQuestion.questions;
     choiceEl.innerHTML="";
+
+    //Creates button element for each question in the webpage dynamically
     currentQuestion.options.forEach(
         function (choice, i){
             var optionBtn= document.createElement("button");
             optionBtn.setAttribute("value", choice);
 
+      //Sets the text content of the button to display the option number 
             optionBtn.textContent= i + 1+"."+choice;
             choiceEl.appendChild(optionBtn);
         }
     );
 
+}
 
+//code to display next questions in the browser
+currentQuestionIndex++;
+if(currentQuestionIndex === displayQuestions.length){
+   return 0;
+}
+else{
+    startQuestions();
 }
