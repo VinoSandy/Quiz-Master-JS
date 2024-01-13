@@ -2,14 +2,14 @@
 
 //Getting DOM elements from index.html
 
-var timerEl= document.getElementById("#time");
-var startScreen=document.getElementById("#start-screen");
-var startBtn= document.getElementById("#start");
-var questionsEl= document.getElementById("#questions");
-var displayEl=document.getElementById("#question-title")
-var choiceEl = document.getElementById("#choices");
-var initialEl= document.getElementById("#initials");
-var submitBtn = document.getElementById("#submit");
+var timerEl= document.getElementById("time");
+var startScreen=document.getElementById("start-screen");
+var startBtn= document.getElementById("start");
+var questionsEl= document.getElementById("questions");
+var displayEl=document.getElementById("question-title")
+var choiceEl = document.getElementById("choices");
+var initialEl= document.getElementById("initials");
+var submitBtn = document.getElementById("submit");
 var feedbackEl= document.getElementById("feedback");
 
 // Initial status of time and qusetion before starting the quiz
@@ -27,7 +27,7 @@ timer= setInterval(function clock(){
     time--;
     timerEl.textContent=time;
     if(time<=0){
-        return ;
+        clearInterval(timer);
     }
 },1000);
 
@@ -47,6 +47,7 @@ startQuestions();
 //Function to display questions with options
 function startQuestions(){
     var currentQuestion= displayQuestions[currentQuestionIndex];
+    
     displayEl.textContent=currentQuestion.questions;
     choiceEl.innerHTML="";
 
@@ -59,6 +60,7 @@ function startQuestions(){
       //Sets the text content of the button to display the option number 
             optionBtn.textContent= i + 1+"."+choice;
             choiceEl.appendChild(optionBtn);
+            optionBtn.onclick= checkAnswer();
         }
     );
 
@@ -67,8 +69,34 @@ function startQuestions(){
 //code to display next questions in the browser
 currentQuestionIndex++;
 if(currentQuestionIndex === displayQuestions.length){
-   return 0;
+   
 }
 else{
     startQuestions();
 }
+
+
+
+//code to verify the choosen answer and deduct time for wrong answer
+
+function checkAnswer(){
+
+    if(this.value !== displayQuestions[currentQuestionIndex].answer){
+        time -= 5;
+
+        if(time<=0){
+            time = 0;
+        }
+
+        timerEl.textContent=time;
+        feedbackEl.textContent="Wrong!";
+    }
+   
+     else{
+        feedbackEl.textContent="Correct";
+     }
+  
+
+}
+
+startBtn.onclick= startTimer();
