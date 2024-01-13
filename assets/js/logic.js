@@ -6,6 +6,7 @@ var timerEl= document.getElementById("#time");
 var startScreen=document.getElementById("#start-screen");
 var startBtn= document.getElementById("#start");
 var questionsEl= document.getElementById("#questions");
+var displayEl=document.getElementById("#question-title")
 var choiceEl = document.getElementById("#choices");
 var initialEl= document.getElementById("#initials");
 var submitBtn = document.getElementById("#submit");
@@ -38,5 +39,24 @@ startScreen.setAttribute("class","hide");
 
 //dynamically making the question element visible
 questionsEl.removeAttribute("class");
+
+startQuestions();
+
+}
+
+function startQuestions(){
+    var currentQuestion= displayQuestions[currentQuestionIndex];
+    displayEl.textContent=currentQuestion.questions;
+    choiceEl.innerHTML="";
+    currentQuestion.options.forEach(
+        function (choice, i){
+            var optionBtn= document.createElement("button");
+            optionBtn.setAttribute("value", choice);
+
+            optionBtn.textContent= i + 1+"."+choice;
+            choiceEl.appendChild(optionBtn);
+        }
+    );
+
 
 }
