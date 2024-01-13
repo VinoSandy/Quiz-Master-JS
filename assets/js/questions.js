@@ -1,4 +1,5 @@
-//
+
+// Array of objects with nested array created to hold questions, options and answers created.
 
 var displayQuestions=[
        
