@@ -15,6 +15,7 @@ var feedbackEl= document.getElementById("feedback");
 var currentQuestionIndex = 0;
 var timer;
 var time= displayQuestions.length*10;
+var correctQuestions;
 
 
 console.log("Timer:"+time);
@@ -90,7 +91,9 @@ function checkAnswer(event){
    
      else{
         feedbackEl.textContent="Correct";
+        correctQuestions++;
      }
+    
      feedbackEl.setAttribute( "class","feedback"); 
     setTimeout(function () { 
         feedbackEl.setAttribute( 
@@ -99,8 +102,7 @@ function checkAnswer(event){
         ); 
     }, 1000); 
 
-    
-
+   
  console.log("selectedvalue"+ selectedChoice);
 
      //code to display next questions in the browser
@@ -113,19 +115,6 @@ else{
 
 }
   
-}
-
-function nextQuestion(){
-
-    currentQuestionIndex++;
-if(currentQuestionIndex === displayQuestions.length){
-
-    stopQuiz;
-}
-else{
-    startQuestions;
-}
-    
 }
 
 
@@ -148,24 +137,24 @@ questionsEl.setAttribute("class","hide");
 }
 
 function getScore(){
-var name= initialEl.value.trim();
-if(name !== ""){
-    var highScore= JSON.parse(localStorage.getItem("highScore"));
+var name= initialEl.value.trim().toUpperCase();
 
-   // if(highScore == null){ highScore = [];}
+if(name !== ""){
+    var latestScore= JSON.parse(localStorage.getItem("latestScore"));
 }    
 else{
     alert("Please Enter your initials..")
 }
- var latestValue = { score : time,
+
+ var latestValue = { score : time + correctQuestions*10,
                      nameInitial : name};
 
- highScore.push(latestValue);
+ latestScore.push(latestValue);
 
- localStorage.setItem("highScore", JSON.stringify(highScore));
+ localStorage.setItem("latestScore", JSON.stringify(latestScore));
 
- 
 }
+
 
 startBtn.onclick = startQuiz;
 
