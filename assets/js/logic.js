@@ -28,7 +28,7 @@ timer= setInterval(function clock(){
     time--;
     timerEl.textContent=time;
     if(time<=0){
-        clearInterval(timer);
+        stopQuiz();
     }
 },1000);
 
@@ -111,6 +111,16 @@ else{
 }
 
 function stopQuiz(){
+
+clearInterval(timer);
+
+var endScreenEl= document.getElementById("end-screen");
+ endScreenEl.removeAttribute("class");
+
+var finalScoreEl= document.getElementById("final-score");
+finalScoreEl.textContent= time;
+
+questionsEl.setAttribute("class","hide");
 
 }
 
