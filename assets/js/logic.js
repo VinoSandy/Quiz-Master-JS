@@ -17,6 +17,7 @@ var currentQuestionIndex = 0;
 var timer;
 var time= displayQuestions.length*10;
 
+
 console.log("Timer:"+time);
 
 //Function to start timer
@@ -60,28 +61,29 @@ function startQuestions(){
       //Sets the text content of the button to display the option number 
             optionBtn.textContent= i + 1+"."+choice;
             choiceEl.appendChild(optionBtn);
-            optionBtn.onclick= checkAnswer();
+           
+          optionBtn.addEventListener('click', function(event){
+            var clickedValue = event.target.value;
+            console.log('Clicked Value:', clickedValue);
+            
+             optionBtn.onclick= checkAnswer();
+
+
+        })
+            
         }
     );
 
 }
 
-//code to display next questions in the browser
-currentQuestionIndex++;
-if(currentQuestionIndex === displayQuestions.length){
-   
-}
-else{
-    startQuestions();
-}
+console.log("This value"+this.value);
 
 
-
-//code to verify the choosen answer and deduct time for wrong answer
+//code to verify the choosen answer and deduct time for wrong answer and move to next question
 
 function checkAnswer(){
 
-    if(this.value !== displayQuestions[currentQuestionIndex].answer){
+    if( this.value !== displayQuestions[currentQuestionIndex].answer){
         time -= 5;
 
         if(time<=0){
@@ -95,8 +97,22 @@ function checkAnswer(){
      else{
         feedbackEl.textContent="Correct";
      }
+    
+
+     //code to display next questions in the browser
+currentQuestionIndex++;
+if(currentQuestionIndex === displayQuestions.length){
+    stopQuiz();
+}
+else{
+    startQuestions();
+}
   
+}
+
+function stopQuiz(){
 
 }
+
 
 startBtn.onclick= startTimer();
