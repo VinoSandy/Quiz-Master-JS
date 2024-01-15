@@ -17,25 +17,15 @@ var timer;
 var time= displayQuestions.length*10;
 var correctQuestions=0;
 var score;
-
-
-console.log("Timer:"+time);
+var correctAudio = new Audio("./assets/sfx/correct.wav");
+var incorrectAudio = new Audio("./assets/sfx/incorrect.wav");
 
 //Function to start timer
 
 function startQuiz(){
 
-timer= setInterval(function countDown(){
-    time--;
-    timerEl.textContent=time;
-    if(time<=0){
-        stopQuiz();
-    }
-},1000);
+timer= setInterval(countDown,1000);
 
-function countDown(){
-    
-}
 
 timer.textContent=time;
 console.log("Time inside interval:"+time);
@@ -50,7 +40,15 @@ startQuestions();
 
 }
 
-//Function to display questions with options
+function countDown(){
+    time--;
+    timerEl.textContent=time;
+    if(time<=0){
+        stopQuiz();
+    }
+}
+
+/* display questions with options*/
 function startQuestions(){
     var currentQuestion= displayQuestions[currentQuestionIndex];
     
@@ -77,47 +75,43 @@ function startQuestions(){
 
 
 
-//code to verify the choosen answer and deduct time for wrong answer and move to next question
+/* verify the selected answer and deduct time for wrong answer and move to next question*/
 
 function checkAnswer(event){
-
-
     var selectedChoice = event.target.value;
+
     if( selectedChoice !== displayQuestions[currentQuestionIndex].answer){
         time -= 5;
-
         if(time<=0){
             time = 0;
         }
         timerEl.textContent=time;
-  
         feedbackEl.textContent="Wrong!";
+        correctAudio.play();
         }
    
      else{
         feedbackEl.textContent="Correct";
         correctQuestions++;
+        incorrectAudio.play();
      }
-    
+
+     //Makes feedback element visible for a second    
      feedbackEl.setAttribute( "class","feedback"); 
-    setTimeout(function () { 
+     setTimeout(function () { 
         feedbackEl.setAttribute( 
             "class", 
             "feedback hide"
         ); 
     }, 1000); 
 
-   
- console.log("selectedvalue"+ selectedChoice);
-
-     //code to display next questions in the browser
+ // Displays next questions in the browser
 currentQuestionIndex++;
 if(currentQuestionIndex === displayQuestions.length){
     stopQuiz();
 }
 else{
     startQuestions();
-
 }
   
 }
@@ -144,10 +138,9 @@ questionsEl.setAttribute("class","hide");
 
 }
 
+/* Save Score to the local storage */
 function saveScore(){
 var name= initialEl.value.trim().toUpperCase();
-
-console.log("name:"+name)
 
 if(name !== ""){
     var highScore= JSON.parse(localStorage.getItem("highScore")) ;
@@ -171,9 +164,7 @@ else{
  
  console.log(latestScore.score+":"+latestScore.name);
  
-
 displayHighScore;
-
 window.location.href= "highscores.html";
 
 }
