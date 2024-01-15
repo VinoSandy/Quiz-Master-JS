@@ -16,6 +16,7 @@ var currentQuestionIndex = 0;
 var timer;
 var time= displayQuestions.length*10;
 var correctQuestions;
+var score;
 
 
 console.log("Timer:"+time);
@@ -24,13 +25,17 @@ console.log("Timer:"+time);
 
 function startQuiz(){
 
-timer= setInterval(function clock(){
+timer= setInterval(function countDown(){
     time--;
     timerEl.textContent=time;
     if(time<=0){
         stopQuiz();
     }
 },1000);
+
+function countDown(){
+    
+}
 
 timer.textContent=time;
 console.log("Time inside interval:"+time);
@@ -136,26 +141,28 @@ questionsEl.setAttribute("class","hide");
 
 }
 
-function getScore(){
+function saveScore(){
 var name= initialEl.value.trim().toUpperCase();
 
 if(name !== ""){
-    var latestScore= JSON.parse(localStorage.getItem("latestScore"));
+    var highScore= JSON.parse(localStorage.getItem("highScore")) || [];
 }    
 else{
     alert("Please Enter your initials..")
 }
 
- var latestValue = { score : time + correctQuestions*10,
-                     nameInitial : name};
+score= time+ correctQuestions*10;
 
- latestScore.push(latestValue);
+ var latestScore = { score : score,
+                     name : name};
 
- localStorage.setItem("latestScore", JSON.stringify(latestScore));
+ highScore.push(latestScore);
 
+ localStorage.setItem("highScore", JSON.stringify(highScore));
+ 
 }
 
 
 startBtn.onclick = startQuiz;
 
-submitBtn.onclick= getScore;
+submitBtn.onclick= saveScore;
