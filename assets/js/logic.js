@@ -87,13 +87,13 @@ function checkAnswer(event){
         }
         timerEl.textContent=time;
         feedbackEl.textContent="Wrong!";
-        correctAudio.play();
+        incorrectAudio.play();
         }
    
      else{
         feedbackEl.textContent="Correct";
         correctQuestions++;
-        incorrectAudio.play();
+        correctAudio.play();
      }
 
      //Makes feedback element visible for a second    
