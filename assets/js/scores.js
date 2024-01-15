@@ -2,15 +2,15 @@ var clearEl = document.getElementById("clear");
 var olEl= document.getElementById("highscores");
 
 
-function clearScore(){
-    localStorage.removeItem("highScore");
-}
-
-
 
 function displayHighScore(){
 
-    var highScore= JSON.parse(localStorage.getItem("highScore")) || [];
+    var highScore= JSON.parse(localStorage.getItem("highScore"));
+    
+    if(!highScore){
+        highScore = [];
+    }
+
 
     highScore.sort(function(a,b){     
         return b.score - a.score;
@@ -25,7 +25,12 @@ function displayHighScore(){
               
 }
 
-clearEl.onclick= clearScore();
+function clearScore(){
+    localStorage.removeItem("highScore");
+    window.location.reload(); 
+}
+
+clearEl.onclick= clearScore;
 
 displayHighScore();
 

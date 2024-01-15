@@ -15,7 +15,7 @@ var feedbackEl= document.getElementById("feedback");
 var currentQuestionIndex = 0;
 var timer;
 var time= displayQuestions.length*10;
-var correctQuestions;
+var correctQuestions=0;
 var score;
 
 
@@ -134,7 +134,10 @@ var endScreenEl= document.getElementById("end-screen");
 
 //Set the finalscore in the DOM element
 var finalScoreEl= document.getElementById("final-score");
-finalScoreEl.textContent= time;
+
+score= time + correctQuestions*10;
+
+finalScoreEl.textContent= score;
 
 //Hides the display question element
 questionsEl.setAttribute("class","hide");
@@ -144,14 +147,20 @@ questionsEl.setAttribute("class","hide");
 function saveScore(){
 var name= initialEl.value.trim().toUpperCase();
 
-if(name !== ""){
-    var highScore= JSON.parse(localStorage.getItem("highScore")) || [];
-}    
-else{
-    alert("Please Enter your initials..")
-}
+console.log("name:"+name)
 
-score= time+ correctQuestions*10;
+if(name !== ""){
+    var highScore= JSON.parse(localStorage.getItem("highScore")) ;
+
+    if(!highScore){
+    highScore= [];
+  }
+}    
+
+else{
+    alert("Please Enter your initials..");
+    return;
+}
 
  var latestScore = { score : score,
                      name : name};
@@ -160,7 +169,16 @@ score= time+ correctQuestions*10;
 
  localStorage.setItem("highScore", JSON.stringify(highScore));
  
+ console.log(latestScore.score+":"+latestScore.name);
+ 
+
+displayHighScore();
+
 }
+
+
+
+
 
 
 startBtn.onclick = startQuiz;
