@@ -172,13 +172,11 @@ else{
  console.log(latestScore.score+":"+latestScore.name);
  
 
-displayHighScore();
+displayHighScore;
+
+window.location.href= "highscores.html";
 
 }
-
-
-
-
 
 
 startBtn.onclick = startQuiz;
