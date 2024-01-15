@@ -25,21 +25,19 @@ var incorrectAudio = new Audio("./assets/sfx/incorrect.wav");
 function startQuiz(){
 
 timer= setInterval(countDown,1000);
+timerEl.textContent=time;
 
-
-timer.textContent=time;
-console.log("Time inside interval:"+time);
-
-//dynamically hiding the start screen
+//dynamically hiding the start screen in browser
 startScreen.setAttribute("class","hide");
 
-//dynamically making the question element visible
+//dynamically making the question element visible in browser
 questionsEl.removeAttribute("class");
 
 startQuestions();
 
 }
 
+/*sets countdown for timer element in the browser */
 function countDown(){
     time--;
     timerEl.textContent=time;
@@ -140,31 +138,39 @@ questionsEl.setAttribute("class","hide");
 
 /* Save Score to the local storage */
 function saveScore(){
+  //stores the value of initial element by removing spaces and coverting it to uppercase  
 var name= initialEl.value.trim().toUpperCase();
 
+//
 if(name !== ""){
+//Retrives value from the localstorage and stores in the variable highscore
     var highScore= JSON.parse(localStorage.getItem("highScore")) ;
-
+//sets the variable with array if the value is null or undefined
     if(!highScore){
     highScore= [];
   }
 }    
+
 
 else{
     alert("Please Enter your initials..");
     return;
 }
 
+
  var latestScore = { score : score,
                      name : name};
 
+ //variable modified with newscore                    
  highScore.push(latestScore);
 
+ //saves updated value in the localstorage
  localStorage.setItem("highScore", JSON.stringify(highScore));
  
  console.log(latestScore.score+":"+latestScore.name);
  
 displayHighScore;
+//navigates to highscore page
 window.location.href= "highscores.html";
 
 }
