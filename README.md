@@ -3,19 +3,19 @@
    Quiz-Master-JS is a timed quiz on javascript fundamentals that stores scores on local variable and displays them on the web browser.
 ## Contents:
    quiz-Master-JS has following contents,
-   # HTML:
+   ### HTML:
      index.html and highscores.html
    * index.html - is the main page of the project or the landing page, it has elements to start the quiz,timer,display questions and a navigator to view highscore.
    * highscores.html - is the page to display highscore, has elements to get back to the mainpage and clear the contents of the page.
 
-   # CSS:
+   ### CSS:
      style.css - defined with styles for all the elements of the project.
 
-   # sfx:
+   ### sfx:
      correct.wav and incorrect.wav - both are audio files used to play audio when the correct and wrong options are selected in the quiz.
      
 
-   # Java Script:
+   ### Java Script:
      logic.js, questions.js , scores.js
 
     * questions.js - has array of nested objects variable with questions, options and answer to be used in the quiz.
@@ -30,7 +30,7 @@
     function to empty the score and initial from the local storage.
 
 ## Demo:
-# Demo 1:
+### Demo 1:
 
  ![Demo 1 ](./assets/demo/Demo%201.gif)
 
@@ -43,7 +43,7 @@ The above demo covers secenario that when the user is in the landing page and cl
 * on selecting initial user is navigated to highscore page and displayed with score and intial of the user.
 * on selecting go back button user is navigated to the main page.
 
-# Demo 2:
+### Demo 2:
 
   ![Demo 2](./assets/demo/Demo%202.gif)
 
@@ -51,6 +51,16 @@ The above demo covers secenario that when the user is in the landing page and cl
   * when user selects viewhighscore link ,user is navigated to the highscore page to display high scores.
   * when user takes test again without clearing the score, user is displayed with highscore with initials entered in sorted score order.
   * display highscore page gets cleared with score data when user clicks clear score button.
+
+## Git Hub URL:
+   
+  *  https://github.com/VinoSandy/Quiz-Master-JS.git
+
+## URL of Deployed Application:
+
+  * https://vinosandy.github.io/Quiz-Master-JS/
+  
+
   
 
 
