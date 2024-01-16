@@ -171,7 +171,7 @@ else{
  
 displayHighScore;
 //navigates to highscore page
-window.location.href= "highscores.html";
+window.location.href= "./assets/html/highscores.html";
 
 }
 
