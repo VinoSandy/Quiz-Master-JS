@@ -28,6 +28,29 @@
     * scores.js- has function to go pack to the main page,
     function to compare previously stored score with newscore in the local storage and display them with initials entered by the user ,
     function to empty the score and initial from the local storage.
+
 ## Demo:
+# Demo 1:
+
+ ![Demo 1 ](./assets/demo/Demo%201.gif)
+
+The above demo covers secenario that when the user is in the landing page and clicks the start button following event takes place,
+* timer is on and countdown starts.
+* user is displayed with questions and options as buttons.
+* when user selects wrong option, user displayed with error message and 5 second time is deducted from the timer and next question displayed.
+* when user selects correct option user displayed with 'correct' message and timer continues without any change in countdown.
+* when user answers all the questions, user is displayed with score and option to enter user initial.
+* on selecting initial user is navigated to highscore page and displayed with score and intial of the user.
+* on selecting go back button user is navigated to the main page.
+
+# Demo 2:
+
+  ![Demo 2](./assets/demo/Demo%202.gif)
+
+  Secenario covered in Demo 2 is,
+  * when user selects viewhighscore link ,user is navigated to the highscore page to display high scores.
+  * when user takes test again without clearing the score, user is displayed with highscore with initials entered in sorted score order.
+  * display highscore page gets cleared with score data when user clicks clear score button.
   
-    
+
+
